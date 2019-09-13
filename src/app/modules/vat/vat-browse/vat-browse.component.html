@@ -1,0 +1,39 @@
+<section class="w-auto">
+  <div class="form-group">
+    <fieldset>
+      <!--   Number   -->
+      <div class="form-group mb-3">
+        <label>VAT Number</label>
+        <div class="form-group">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">{{data.countryCode}}</span>
+            </div>
+            <input type="text" class="form-control" readonly aria-label="Vat number" [value]="data.vatNumber">
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="col-form-label" for="requestDate">Request date</label>
+        <input class="form-control" type="text" id="requestDate" readonly [value]="data.requestDate.toDateString()">
+      </div>
+
+      <div class="mb-3" *ngIf="data.name !== null && data.name.length > 0">
+        <label class="col-form-label" for="name">Name</label>
+        <input class="form-control" type="text" id="name" readonly [value]="data.name">
+      </div>
+
+      <div class="mb-3" *ngIf="data.address !== null && data.address.length > 0">
+        <label class="col-form-label" for="addr">Address</label>
+        <textarea class="form-control" rows="2" id="addr" readonly [value]="data.address"></textarea>
+      </div>
+
+      <div class="input-group mb-3 d-flex d-table-row align-items-center">
+        <span class="mr-3" >Valid:</span>
+        <i aria-label="yes" class="large material-icons mr-3 text-success" style="font-size: 3em" *ngIf="data.valid">check</i>
+        <i aria-label="no" class="large material-icons mr-3 text-danger" style="font-size: 3em" *ngIf="!data.valid">close</i>
+      </div>
+    </fieldset>
+  </div>
+</section>

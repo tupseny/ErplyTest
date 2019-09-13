@@ -1,0 +1,3 @@
+<ng-template ngFor let-item [ngForOf]="alerts">
+  <ngb-alert *ngIf="item.status" [type]="item.name" (close)="item.status=false">{{item.msg}}</ngb-alert>
+</ng-template>

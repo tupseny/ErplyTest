@@ -1,0 +1,40 @@
+<section class="">
+  <div class="d-flex justify-content-center align-items-center mb-3">
+    <div>
+
+      <!--  Title  -->
+      <h2 class="mb-3">VAT checker</h2>
+
+      <form novalidate [formGroup]="vatForm" (ngSubmit)="onSubmit()">
+        <!--   Input   -->
+        <div class="form-group">
+          <label class="col-form-label col-form-label-lg" for="vatInput">Enter vat number</label>
+          <input class="form-control form-control-lg text-uppercase"
+                 type="text" placeholder="vat number" id="vatInput" [formControl]="vatNumberControl"
+                 formControlName="vat">
+          <ng-container *ngTemplateOutlet="feedbackMsg; context: {control: vatNumberControl}"></ng-container>
+        </div>
+
+        <!--   Submit   -->
+        <button type="submit" class="btn btn-outline-success btn-block mt-2">Check</button>
+      </form>
+    </div>
+
+    <ngx-spinner></ngx-spinner>
+  </div>
+</section>
+
+<ng-template #feedbackMsg let-control="control">
+  <div *ngIf="control.invalid" class="invalid-feedback">
+    <div class="" *ngIf="control.errors.required">Empty number</div>
+
+    <div class="" *ngIf="control.errors.vatErrors">
+      <div class="" *ngIf="control.errors.vatErrors.countryCode">Country code should be 2 alphabetic
+        symbols
+      </div>
+      <div class="" *ngIf="control.errors.vatErrors.numberLength">Number should
+        be from {{control.errors.vatErrors.numberLength.min}} to {{control.errors.vatErrors.numberLength.max}} digits
+      </div>
+    </div>
+  </div>
+</ng-template>
